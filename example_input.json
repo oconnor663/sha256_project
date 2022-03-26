@@ -1,0 +1,52 @@
+{
+  "problem1": [
+    [1, 2],
+    [4294967295, 1],
+    [3050487260, 3710144918]
+  ],
+  "problem2": [
+    [2, 1],
+    [1, 1],
+    [2919882184, 31]
+  ],
+  "problem3": 1114723206,
+  "problem4": 1232674167,
+  "problem5": "iguana wombat dog kangaroo llama turkey yak unicorn sheep xenoce",
+  "problem6": 3536071395,
+  "problem7": 651015076,
+  "problem8": [2749825547, 776049372, 1213590135],
+  "problem9": [3758166654, 2821345890, 1850678816],
+  "problem10": {
+    "state": [
+        2739944672, 3126690193, 4191866847, 1163785745,
+        3714074692, 1172792371, 283469062, 826169706
+    ],
+    "round_constant": 961987163,
+    "schedule_word": 3221900128
+  },
+  "problem11": {
+    "state": [
+      2918946378, 1679978889, 1678006433, 650957219,
+      379281712, 2112907926, 1775216060, 2152648190
+    ],
+    "block": "manatee fox unicorn octopus dog fox fox llama vulture jaguar xen"
+  },
+  "problem12": [0, 1, 55, 56, 64, 492022654431536432],
+  "problem13": [
+    "",
+    "hello world",
+    "aardvark zebra yak pig jaguar aardvark rhinoceros butte",
+    "narwhal dog llama llama giraffe narwhal octopus dog xeno",
+    "John Jacob Jingleheimer Schmidt! His name is my name too. Whenever we go out the people always shout there goes John Jacob Jingleheimer Schmidt! Nanananananana..."
+  ],
+  "problem14": {
+    "original_input": "fox elephant dog",
+    "chosen_suffix": "pig jaguar iguana"
+  },
+  "problem15": "bacb15aef84802baa0f530845013a98ee1eede664b914f8ebc2a520e69049a09",
+  "problem16": {
+    "original_hash": "27b82abe296f3ecd5174b6e6168ea683cd8ef94306d9abd9f81807f2fa587d2a",
+    "original_len": 41,
+    "chosen_suffix": "manatee jaguar zebra zebra dog"
+  }
+}
