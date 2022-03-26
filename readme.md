@@ -45,6 +45,7 @@ all the way to the bottom of it. This is SHA-256.
 
 ## Contents
 
+* [Workflow](#workflow)
 * [Example input](#example-input)
 * [Example output](#example-output)
 * [Building blocks](#building-blocks)
@@ -78,6 +79,23 @@ This project was originally assigned in NYU Tandon's CS-GY 6903 Applied
 Cryptography course. It's intended to be JSON-in-JSON-out and autograded. A
 grading script is provided in this repo, but if you prefer you can also just
 visually compare the output of your solution to the example output provided.
+
+The arguments to the [`grade.py`](grade.py) script are the command to run your
+solution. Internally, the grading script script generates test input with
+[`generate_input.py`](generate_input.py) and uses the Python solution provided
+in [`solution_py/`](solution_py) to generate expected answers. So for example,
+to test the provided Rust solution against the provided Python solution, you
+would run this command:
+
+```
+./grade.py cargo run --manifest-path solution_rs/Cargo.toml
+```
+
+Or similarly, to test the Python solution against itself, you could run:
+
+```
+./grade.py solution_py/solution.py
+```
 
 ## Example input
 
