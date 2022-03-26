@@ -6,13 +6,12 @@ repo](https://github.com/oconnor663/applied_crypto_2021_fall) with all the
 other problem sets.
 
 In this project we're going to implement SHA-256 ourselves, and then we'll use
-our implementation to demonstrate a "length extension attack" (see p. 125 of
-*Serious Cryptography*). To get a sense of scale, take a look at the [SHA-256
-pseudocode on Wikipedia](https://en.wikipedia.org/wiki/SHA-2#Pseudocode). That
-pseudocode will be one of our references, and there will be several direct
-quotes from it below. The [animations in this
-video](https://youtu.be/f9EbD6iY9zI) might also help you get a big-picture
-sense of what the algorithm is doing.
+our implementation to demonstrate a "length extension attack". To get a sense
+of scale, take a look at the [SHA-256 pseudocode on
+Wikipedia](https://en.wikipedia.org/wiki/SHA-2#Pseudocode). That pseudocode
+will be one of our references, and there will be several direct quotes from it
+below. The [animations in this video](https://youtu.be/f9EbD6iY9zI) might also
+help you get a big-picture sense of what the algorithm is doing.
 
 Implementing that pseudocode takes less than a hundred lines of Python, which
 might not seem like a lot. But there are lots of little details in those lines,
