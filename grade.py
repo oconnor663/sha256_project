@@ -57,12 +57,18 @@ def main():
         elif your_output_obj[problem] == expected_output_obj[problem]:
             print(f"{problem} correct")
         else:
-            pp = pprint.PrettyPrinter(indent=4)
+
+            def pretty_print(obj):
+                pp = pprint.PrettyPrinter(indent=4)
+                print(textwrap.indent(pp.pformat(obj), " " * 4))
+
             print(f"{problem} incorrect")
-            print("expected:")
-            print(textwrap.indent(pp.pformat(expected_output_obj[problem]), " " * 4))
-            print("found:")
-            print(textwrap.indent(pp.pformat(your_output_obj[problem]), " " * 4))
+            print("randomized input:")
+            pretty_print(input_obj[problem])
+            print("expected output:")
+            pretty_print(expected_output_obj[problem])
+            print("your output:")
+            pretty_print(your_output_obj[problem])
             any_incorrect = True
     if not any_incorrect:
         print("Well done!")
