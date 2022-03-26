@@ -86,7 +86,7 @@ grading script is provided in this repo, but if you prefer you can also just
 visually compare the output of your solution to the example output provided.
 
 The arguments to the [`grade.py`](grade.py) script are the command to run your
-solution. Internally, the grading script script generates test input with
+solution. Internally, the grading script generates test input with
 [`generate_input.py`](generate_input.py) and uses the Python solution provided
 in [`solution_py/`](solution_py) to generate expected answers. So for example,
 to test the provided Rust solution against the provided Python solution, you
