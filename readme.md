@@ -1,5 +1,10 @@
 # The SHA-256 Project
 
+> This project was originally assigned in NYU Tandon's CS-GY 6903 Applied
+Cryptography course, Fall 2021. Here's the [original course
+repo](https://github.com/oconnor663/applied_crypto_2021_fall) with all the
+other problem sets.
+
 In this project we're going to implement SHA-256 ourselves, and then we'll use
 our implementation to demonstrate a "length extension attack" (see p. 125 of
 *Serious Cryptography*). To get a sense of scale, take a look at the [SHA-256
