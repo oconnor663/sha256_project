@@ -1,24 +1,5 @@
 # The SHA-256 Project
 
-> **Administrative notes:** This is the "Main Project" as described in the
-> course syllabus. Time permitting, there may be a second project towards the
-> end of the course, but there may not be time. This project (or possibly two
-> projects) will represent 30% of your final grade.
->
-> This project is structured like a large problem set, and it's autograded on
-> Gradescope like a problem set. Also like a problem set, **the "no copying
-> code" policy described in Problem Set 1 applies here in full.** The problems
-> below will refer to pages in our book, to standards documents, and to
-> pseudocode, but I've intentionally avoided linking to any actual code, and I
-> recommend that you avoid looking at any code while you do the project. If you
-> do decide to look at code, I recommend that you do so only while you're
-> debugging the code you've already written, and you might also consider taking
-> a five minute break in between looking at anyone else's code and writing code
-> yourself. As always, getting debugging help from your classmates or at office
-> hours is highly encouraged, but you do need to be defensive about letting
-> anyone copy your code once it's working. Unfortunately, we don't have a
-> crystal ball to tell us who wrote what when we enforce this policy.
-
 In this project we're going to implement SHA-256 ourselves, and then we'll use
 our implementation to demonstrate a "length extension attack" (see p. 125 of
 *Serious Cryptography*). To get a sense of scale, take a look at the [SHA-256
@@ -62,7 +43,6 @@ level of detail for any algorithm, if and when you need to.
 So this is it. This is where we're going to open one of the black boxes and get
 all the way to the bottom of it. This is SHA-256.
 
-
 ## Contents
 
 * [Example input](#example-input)
@@ -91,6 +71,13 @@ all the way to the bottom of it. This is SHA-256.
    * [Problem 15: recovering the state](#problem-15-recovering-the-state)
    * [Problem 16: the length extension attack](#problem-16-the-length-extension-attack)
 * [Conclusion](#conclusion)
+
+## Workflow
+
+This project was originally assigned in NYU Tandon's CS-GY 6903 Applied
+Cryptography course. It's intended to be JSON-in-JSON-out and autograded. A
+grading script is provided in this repo, but if you prefer you can also just
+visually compare the output of your solution to the example output provided.
 
 ## Example input
 
