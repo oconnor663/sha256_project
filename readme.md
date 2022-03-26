@@ -1054,7 +1054,8 @@ there are many different avenues to explore. Here are a few:
   tolerate collisions. For these cases, it's common to use a faster hash
   function with a smaller state and a shorter output. See for example
   [SipHash](https://en.wikipedia.org/wiki/SipHash), also designed by J.P.
-  Aumasson, the author of our book. SipHash is used by default in the Rust
+  Aumasson, the author of [our textbook](https://nostarch.com/seriouscrypto).
+  SipHash is used by default in the Rust
   [`HashMap`](https://doc.rust-lang.org/std/collections/struct.HashMap.html),
   for example. But note that even though hash tables/maps don't need collision
   resistance per se, they often do need some related security properties,
