@@ -1,74 +1,74 @@
 #! /usr/bin/env python3
 
 import json
+from os import path
+import pprint
 import sys
+import subprocess
 import textwrap
-import traceback
-from nacl.exceptions import CryptoError
-from nacl.secret import SecretBox
 
-
-def eprint(s, end="\n"):
-    print(s, file=sys.stderr, end=end)
-
-
-def check_equality(_, expected, submitted):
-    if expected == submitted:
-        return (True, "")
-    else:
-        return (False, f"expected: {repr(expected)}, submitted: {repr(submitted)}")
+HERE = path.dirname(path.realpath(__file__))
 
 
 def main():
-    if len(sys.argv) != 4:
-        eprint("Usage: grade.py <inputs> <expected> <submitted>")
-        sys.exit(1)
+    if len(sys.argv) < 2 or sys.argv[1] == "--help":
+        print("Usage example:")
+        print("    ./grade.py python my_solution.py")
+        return
 
-    with open(sys.argv[1]) as f:
-        inputs_obj = json.load(f)
+    # Generate test input.
+    input_json = subprocess.run(
+        [sys.executable, path.join(HERE, "generate_input.py")],
+        stdout=subprocess.PIPE,
+        check=True,
+    ).stdout
+    input_obj = json.loads(input_json)
 
-    with open(sys.argv[2]) as f:
-        expected_obj = json.load(f)
+    # Run the provided Python solution with the test input from above to
+    # generate expected output.
+    expected_output_json = subprocess.run(
+        [sys.executable, path.join(HERE, "solution_py", "solution.py")],
+        input=input_json,
+        stdout=subprocess.PIPE,
+        check=True,
+    ).stdout
+    expected_output_obj = json.loads(expected_output_json)
 
-    with open(sys.argv[3]) as f:
-        submitted_obj = json.load(f)
+    # Run the solution we're grading with the same input.
+    your_command = sys.argv[1:]
+    your_output_json = subprocess.run(
+        sys.argv[1:],
+        input=input_json,
+        stdout=subprocess.PIPE,
+        check=True,
+    ).stdout
+    try:
+        your_output_obj = json.loads(your_output_json)
+    except json.decoder.JSONDecodeError:
+        print("Your solution isn't valid JSON.")
+        return 1
 
-    assert type(inputs_obj) == dict, "expected_obj is not a dictionary"
-    assert type(expected_obj) == dict, "expected_obj is not a dictionary"
-    assert type(submitted_obj) == dict, "submitted_obj is not a dictionary"
-
-    problem_objects = []
-    for problem in expected_obj:
-        problem_object = {"name": problem, "max_score": 1, "score": 0}
-        check_fn = check_equality
-        if problem not in submitted_obj:
-            correct = False
-            error = f"{problem} is missing"
+    # Compare the answers
+    any_incorrect = False
+    for problem in input_obj:
+        if problem not in your_output_obj:
+            print(f"{problem} missing")
+            any_incorrect = True
+        elif your_output_obj[problem] == expected_output_obj[problem]:
+            print(f"{problem} correct")
         else:
-            try:
-                correct, error = check_fn(
-                    inputs_obj[problem],
-                    expected_obj[problem],
-                    submitted_obj[problem],
-                )
-            except Exception:
-                correct = False
-                error = traceback.format_exc().strip()
-        if correct:
-            problem_object["score"] = 1
-            eprint(f"{problem}: ok")
-        else:
-            eprint(f"{problem}: incorrect")
-            eprint(textwrap.indent(error, "    "))
-        problem_objects.append(problem_object)
-
-    output = {
-        "stdout_visibility": "visible",
-        "tests": problem_objects,
-    }
-    json.dump(output, sys.stdout, indent="  ")
-    print()
+            pp = pprint.PrettyPrinter(indent=4)
+            print(f"{problem} incorrect")
+            print("expected:")
+            print(textwrap.indent(pp.pformat(expected_output_obj[problem]), " " * 4))
+            print("found:")
+            print(textwrap.indent(pp.pformat(your_output_obj[problem]), " " * 4))
+            any_incorrect = True
+    if not any_incorrect:
+        print("Well done!")
+    else:
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
