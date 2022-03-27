@@ -42,10 +42,13 @@ def main():
         stdout=subprocess.PIPE,
         check=True,
     ).stdout
+    if len(your_output_json.strip()) == 0:
+        print("Your output is empty. Did you forget to call json.dump() or similar?")
+        return 1
     try:
         your_output_obj = json.loads(your_output_json)
     except json.decoder.JSONDecodeError:
-        print("Your solution isn't valid JSON.")
+        print("Your output isn't valid JSON. Do you have any extra print statements?")
         return 1
 
     # Compare the answers
