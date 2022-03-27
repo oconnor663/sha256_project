@@ -81,8 +81,12 @@ all the way to the bottom of it. This is SHA-256.
 
 This project was originally assigned in NYU Tandon's CS-GY 6903 Applied
 Cryptography course. It's intended to be JSON-in-JSON-out and autograded. A
-grading script is provided in this repo, but if you prefer you can also just
-visually compare the output of your solution to the example output provided.
+simplified [`grade.py`](grade.py) script is provided in this repo, but if you
+prefer you can also just visually compare the output of your solution to the
+example output provided. The original class was taught in Python, and some of
+the problems below include example Python code, but feel free to code in
+whatever language you like. Example solutions are provided in both
+[Python](solution_py) and [Rust](solution_rs).
 
 The arguments to the [`grade.py`](grade.py) script are the command to run your
 solution. Internally, the grading script generates test input with
