@@ -88,22 +88,66 @@ the problems below include example Python code, but feel free to code in
 whatever language you like. Example solutions are provided in both
 [Python](solution_py) and [Rust](solution_rs).
 
-The arguments to the [`grade.py`](grade.py) script are the command to run your
-solution. Internally, the grading script generates test input with
-[`generate_input.py`](generate_input.py) and uses the Python solution provided
-in [`solution_py/`](solution_py) to generate expected answers. So for example,
-to test the provided Rust solution against the provided Python solution, you
-would run this command:
+Here's a bare minimum example of parsing JSON input and producing JSON output
+using Python:
+
+```python
+import json
+import sys
+
+inputs = json.load(sys.stdin)
+outputs = {}
+
+outputs["problem1"] = ["your", "answer", "here"]
+
+json.dump(outputs, sys.stdout)
+```
+
+To run that directly with [`example_input.json`](example_input.json), you'd
+save it to a file like `my_solution.py` and then run this in the terminal:
 
 ```
-./grade.py cargo run --manifest-path solution_rs/Cargo.toml
+$ python3 my_solution.py < example_input.json
+{"problem1": ["your", "answer", "here"]}
 ```
 
-Or similarly, to test the Python solution against itself, you could run:
+To grade it, you'd run this in the terminal:
 
 ```
-./grade.py solution_py/solution.py
+$ ./grade.py python3 my_solution.py
+problem1 incorrect
+randomized input:
+    [[1, 2], [4294967295, 1], [3148047433, 2995627551]]
+expected output:
+    [3, 0, 1848707688]
+your output:
+    ['your', 'answer', 'here']
+problem2 missing
+problem3 missing
+problem4 missing
+problem5 missing
+problem6 missing
+problem7 missing
+problem8 missing
+problem9 missing
+problem10 missing
+problem11 missing
+problem12 missing
+problem13 missing
+problem14 missing
+problem15 missing
+problem16 missing
 ```
+
+As you can see there, the grading script generates random inputs every time you
+run it. So a complete solution should read input values from the JSON input
+every time, rather than just hardcoding the example inputs.
+
+Here's a common pitfall for folks who haven't worked with JSON and stdin/stdout
+before: If you print anything extra to stdout (like with the regular Python
+`print()` function) that will mess up your JSON output, and the grading script
+will give you an error message like "Your solution isn't valid JSON." If you
+see that error, make sure to comment out your print statements.
 
 ## Example input
 
