@@ -25,7 +25,8 @@ fn add32(a: u32, b: u32) -> u32 {
 }
 
 fn rightrotate32(x: u32, n: u32) -> u32 {
-    (x >> n) | (x << (32 - n))
+    // The right operand of >> or << must always be within 0..=31.
+    (x >> (n % 32)) | (x << ((32 - n) % 32))
 }
 
 fn little_sigma0(x: u32) -> u32 {
