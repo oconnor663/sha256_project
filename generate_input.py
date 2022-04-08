@@ -2,7 +2,7 @@
 
 import json
 import secrets
-from secrets import randbits
+from secrets import randbits, randbelow
 import sys
 
 # CAUTION: `random` isn't cryptographically secure. In general, prefer to use
@@ -58,16 +58,18 @@ inputs = {}
 # Problem 1
 inputs["problem1"] = [
     [1, 2],
-    [(2 ** 32) - 1, 1],
+    [(2**32) - 1, 1],
     # Something random that will overflow.
-    [(2 ** 31) + randbits(31), (2 ** 31) + randbits(31)],
+    [(2**31) + randbits(31), (2**31) + randbits(31)],
 ]
 
 # Problem 2
 inputs["problem2"] = [
     [2, 1],
     [1, 1],
-    [randbits(32), randbits(5)],
+    # Avoid generating pathological rotations (0 or 32). Bitshifting by those
+    # amounts is weird in C/C++/Rust.
+    [randbits(32), randbelow(31) + 1],
 ]
 
 
