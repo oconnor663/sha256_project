@@ -399,10 +399,11 @@ Now we're ready to compute the full 64-**word** message schedule array, which
 is usually called `W` (for "words"). As we said above, the block size of
 SHA-256 is 64 **bytes**, so for this process you start off with a 64-byte block
 of input. Convert these 64 bytes into 16 words, by converting each 4-byte group
-into an integer using a **big-endian** conversion. (Using the wrong endianness
-here will be a *common mistake*.) This gives you the first 16 elements of `W`.
-For each of the remaining 48 elements — that is, for each index from 16 to 63 —
-use the following formula:
+into an integer using a **big-endian** conversion like
+[`int.from_bytes(..., "big")`](https://docs.python.org/3/library/stdtypes.html#int.from_bytes).
+(Using the wrong endianness here will be a *common mistake*.) This gives you
+the first 16 elements of `W`. For each of the remaining 48 elements — that is,
+for each index from 16 to 63 — use the following formula:
 
 ```
 W[i] := W[i-16] + little_sigma0(W[i-15]) + W[i-7] + little_sigma1(W[i-2])
@@ -758,7 +759,8 @@ bits. Here's the padding scheme as it's originally defined:
 1. Start the padding bitstring with a single 1-bit.
 2. Then append some 0-bits after that. We'll define how many in step 4 below.
 3. Finally, append the bit-length of the message, encoded as a 64-bit unsigned
-   big-endian number.
+   big-endian number with
+   [`.to_bytes(8, "big")`](https://docs.python.org/3/library/stdtypes.html#int.to_bytes).
 4. Choose the number of 0-bits for step 2 to be the smallest number such that
    the total bit-length of the message plus the padding is an exact multiple of
    512.
@@ -780,8 +782,9 @@ redescribed in terms of bytes, the way we'll actually implement it:
 2. Then append some 0x00 bytes after that. We'll define how many in step 4
    below.
 3. Finally, append **8 times** the byte-length of the message, encoded as an
-   8-byte unsigned **big-endian** number. (Forgetting to multiply the `len()`
-   by 8 here is a *common mistake*.)
+   8-byte unsigned big-endian number with
+   [`.to_bytes(8, "big")`](https://docs.python.org/3/library/stdtypes.html#int.to_bytes).
+   (Forgetting to multiply the `len()` by 8 here is a *common mistake*.)
 4. Choose the number of 0x00 bytes for step 2 to be the smallest number such
    that the total byte-length of the message plus the padding is an exact
    multiple of 64.
