@@ -67,14 +67,6 @@ outputs["problem12"] = [sha256.padding_bytes(n).hex() for n in inputs["problem12
 ### The Hash Function
 
 # Problem 13
-def assert_equal(s):
-    import hashlib
-
-    assert hashlib.sha256(s).digest() == sha256.sha256(s)
-
-
-for s in inputs["problem13"]:
-    assert_equal(s.encode())
 outputs["problem13"] = [sha256.sha256(s.encode()).hex() for s in inputs["problem13"]]
 
 
