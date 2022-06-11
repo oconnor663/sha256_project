@@ -135,7 +135,7 @@ def sha256(message):
     return b"".join(x.to_bytes(4, "big") for x in state_words)
 
 
-# This is a test function. If you want to run it (and the other test above),
+# This is a test function. If you want to run it (and the other test below),
 # install pytest with `pip install pytest` and then run `pytest sha256.py`.
 # This test is the only place in this solution where I use hashlib.
 def test_sha256():
