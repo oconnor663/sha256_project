@@ -24,11 +24,11 @@ ROUND_CONSTANTS = [
 
 
 def add32(*args):
-    return sum(args) % (2 ** 32)
+    return sum(args) % (2**32)
 
 
 def rightrotate32(x, n):
-    assert x < 2 ** 32, "x is too large. Did you use + instead of add32 somewhere?"
+    assert x < 2**32, "x is too large. Did you use + instead of add32 somewhere?"
     right_part = x >> n
     left_part = x << (32 - n)
     return add32(left_part, right_part)
