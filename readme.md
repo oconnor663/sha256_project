@@ -1110,7 +1110,7 @@ there are many different avenues to explore. Here are a few:
   for example. But note that even though hash tables/maps don't need collision
   resistance per se, they often do need some related security properties,
   because they can be [vulnerable to DOS
-  attacks](https://www.anchor.com.au/blog/2012/12/how-to-explain-hash-dos-to-your-parents-by-using-cats/)
+  attacks](https://furinkan.meidokon.net/2012-12-20_hashdos_catpost/cats.html)
   if an attacker is able to produce too many collisions.
 
 - Some applications need a hash function with more exotic properties. For
